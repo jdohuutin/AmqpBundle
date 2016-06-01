@@ -2,12 +2,12 @@
 
 namespace M6Web\Bundle\AmqpBundle\DependencyInjection;
 
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
-use Symfony\Component\HttpKernel\DependencyInjection\Extension;
-use Symfony\Component\DependencyInjection\Loader;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
+use Symfony\Component\DependencyInjection\Loader;
 use Symfony\Component\DependencyInjection\Reference;
+use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 /**
  * This is the class that loads and manages your bundle configuration
@@ -103,8 +103,7 @@ class M6WebAmqpExtension extends Extension
             }
 
             // Use a factory to build the producer
-            $producerDefinition->setFactoryService('m6_web_amqp.producer_factory')
-                               ->setFactoryMethod('get');
+            $producerDefinition->setFactory([new Reference('m6_web_amqp.producer_factory'), 'get']);
 
             if ($config['prototype']) {
                 $producerDefinition->setScope('prototype');
@@ -161,8 +160,7 @@ class M6WebAmqpExtension extends Extension
             }
 
             // Use a factory to build the consumer
-            $consumerDefinition->setFactoryService('m6_web_amqp.consumer_factory')
-                               ->setFactoryMethod('get');
+            $consumerDefinition->setFactory([new Reference('m6_web_amqp.consumer_factory'), 'get']);
 
             if ($config['prototype']) {
                 $consumerDefinition->setScope('prototype');

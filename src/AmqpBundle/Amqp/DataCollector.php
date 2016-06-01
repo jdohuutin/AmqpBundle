@@ -1,9 +1,9 @@
 <?php
 namespace M6Web\Bundle\AmqpBundle\Amqp;
 
-use Symfony\Component\HttpKernel\DataCollector\DataCollector as SymfonyDataCollector;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\DataCollector\DataCollector as SymfonyDataCollector;
 
 /**
  * Handle datacollector for amqp
